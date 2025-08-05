@@ -5,6 +5,23 @@ This repository contains a demo implementation of a location-based communication
 - **BrokerFinal** – a [Vapor](https://vapor.codes) server application that will act as a message broker.
 - **PPDFinal** – a SwiftUI client application following the Model‑View‑ViewModel (MVVM) architecture.
 
+## Requirements overview
+
+The project implements the core features of a location‑based communication system:
+
+1. Synchronous messaging between online users via WebSocket connections.
+2. Asynchronous messaging for offline users using a shared message queue (Redis or in‑memory).
+3. Queued messages are delivered only when the recipient comes online.
+4. Each user manages a personal contact list.
+5. Users are instantiated with name, geographic coordinates and online status.
+6. A configurable radius limits which contacts can communicate in real time.
+7. Contacts are refreshed whenever someone enters the user’s radius.
+8. Location, status and radius can be updated at any time.
+9. Live chat is permitted only for contacts that are online and inside the radius.
+10. Offline or out‑of‑range contacts receive messages through the asynchronous queue.
+
+For a presentation‑style explanation of these points, see [presentation_script.md](presentation_script.md).
+
 ## SwiftUI project structure
 
 The `PPDFinal` target now contains dedicated folders for the MVVM pattern:
@@ -75,4 +92,14 @@ swift run --hostname 0.0.0.0 --port 8080
 The client already points to `127.0.0.1:8080` by default.
 
 Refer to the individual README files in each target for more details.
+
+## Testing
+
+To run the server's unit tests:
+
+```bash
+cd BrokerFinal
+swift test
+```
+
 

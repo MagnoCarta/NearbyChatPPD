@@ -9,13 +9,16 @@ actor APIActor {
 final class APIClient {
     private let baseURL: URL
     private let session: URLSession
-    private let encoder = JSONEncoder()
-    private let decoder = JSONDecoder()
+    private let encoder: JSONEncoder
+    private let decoder: JSONDecoder
 
     @MainActor
     init(baseURL: URL, session: URLSession = .shared) {
         self.baseURL = baseURL
         self.session = session
+        // Use coders that support both numeric and ISO8601 date representations
+        self.encoder = JSONCoders.makeEncoder()
+        self.decoder = JSONCoders.makeDecoder()
     }
 
     struct ContactSyncBody: Codable {

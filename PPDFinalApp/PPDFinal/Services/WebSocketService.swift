@@ -34,13 +34,16 @@ final class WebSocketService {
 
     private var delegates: [DelegateWrapper] = []
 
-    private let encoder = JSONEncoder()
-    private let decoder = JSONDecoder()
+    private let encoder: JSONEncoder
+    private let decoder: JSONDecoder
 
     @MainActor
     init(baseURL: URL, session: URLSession = .shared) {
         self.baseURL = baseURL
         self.session = session
+        // Use coders that support both numeric and ISO8601 date representations
+        self.encoder = JSONCoders.makeEncoder()
+        self.decoder = JSONCoders.makeDecoder()
     }
 
     func connect(userID: UUID) {

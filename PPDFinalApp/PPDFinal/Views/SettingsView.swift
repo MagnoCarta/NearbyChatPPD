@@ -6,7 +6,7 @@ struct SettingsView: View {
 
     var body: some View {
         Form {
-            Stepper(value: $settings.radius, in: 100...5000, step: 100) {
+            Stepper(value: $settings.radius, in: 0...5000, step: 100) {
                 Text("Radius: \(Int(settings.radius)) m")
             }
             Toggle("Notifications", isOn: $settings.notificationsEnabled)

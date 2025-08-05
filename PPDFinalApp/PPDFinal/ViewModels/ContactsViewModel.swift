@@ -51,7 +51,7 @@ final class ContactsViewModel: WebSocketServiceDelegate {
                 updated.append(copy)
             }
             allContacts = updated
-            contacts = allContacts
+            contacts = allContacts.filter { ($0.distance ?? .infinity) <= radius }
         }
         print("Filtered nearby contacts: \(contacts.count)")
     }
