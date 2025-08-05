@@ -1,11 +1,3 @@
-//
-//  NetworkServiceError.swift
-//  PPDFinal
-//
-//  Created by Gilberto Magno on 04/08/25.
-//
-
-
 import Foundation
 
 public enum NetworkServiceError: String, Error, CaseIterable {
